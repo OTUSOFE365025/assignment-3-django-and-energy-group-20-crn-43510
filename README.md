@@ -1,102 +1,136 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/-cPJVYMd)
-Django ORM Standalone
-=====================
+# Assignment 3 - Django ORM Cash Register Application
 
-![Django](https://img.shields.io/badge/Django_ORM-Standalone-blue)
-![Python](https://img.shields.io/badge/Python-yellow)
+## Group Members
+- **Caren Eissa** - 100920554 (Q2)
+- **Shagufta Shaikh** - 100924656 (Q2)  
+- **Armaan Parmar** - 100877218 (Q1)
 
-Use the database components of Django without having to use the rest of Django (i.e. running a web server)! :tada: A typical use case for using this template would be if you are writing a python script and you would like the database functionality provided by Django, but have no need for the request/response functionalty of a client/server web application that Django also provides. 
+## Project Overview
+This project implements a cash register system using Django ORM (Object-Relational Mapping) that allows for product management and scanning functionality. The application demonstrates proper use of Django models, database operations, and interactive user interfaces.
 
-With this project template you can write regular python scripts and use Django's excellent ORM functionality with the database backend of your choice. This makes it convienient for Djangonauts to write database driven python applications with the familiar and well polished Django ORM. Enjoy.
+## Code Organization & Django ORM Implementation
 
-:gear: Requirements
--------------------
-- Last tested successfully with Python 3.10.4 and Django 5.0.6
-- Create venv and pip install django to import the required modules.
-
-:open_file_folder: File Structure
----------------------------------
+### Project Structure
 ```
-django-orm/
+assignment-3-django-and-energy-group-20-crn-43510/
+│
+├── .github/
+│ └── .keep 
+│
 ├── db/
-│   ├── __init__.py
-│   └── models.py
-├── main.py
-├── manage.py
-├── README.md
-└── settings.py
+│ └── migrations/
+│ ├── init.py 
+│ └── models.py 
+│
+├── images/
+│ ├── list.png
+│ ├── populating_database.png
+│ ├── product_found.png
+│ └── product_notfound.png
+│
+├── .gitignore 
+├── README.md 
+├── main.py 
+├── manage.py 
+└── settings.py 
 ```
 
-__The main.py file is the entry point for the project, and where you start your code. You automatically get access to your models via ```from db.models import *```
-Think of it like a plain old python file, but now with the addition of Django's feature-rich models.__ :smiling_face_with_three_hearts:
+### Django ORM Usage
+The application leverages Django ORM for all database operations:
 
-__The db/models.py is where you configure your typical Django models.__ There is a toy user model included as a simple example. After running the migrations command in the quick setup below, a db.sqlite3 file will be generated. The settings.py file is where can swap out the sqlite3 database for another database connection, such as Postgres or AmazonRDS, if you wish. For most applications, sqlite3 will be powerful enough. But if you need to swap databases down the road, you can easily do so, which is one of the benefits of using the Django ORM. 
+- **Models**: Defined in `db/models.py` with a `Product` model containing UPC, name, and price fields
+- **Database Operations**: Uses Django's ORM for:
+  - Creating and populating product records
+  - Querying products by UPC
+  - Displaying all products
+  - Object relationship management
 
-:rocket: Quick Setup
---------------------
-Create a folder for your project on your local machine
+### Key Files Description
+- **`main.py`**: Main application script containing the cash register functionality
+- **`db/models.py`**: Defines the Product model using Django's Model class
+- **`manage.py`**: Django management script for database migrations
+- **`settings.py`**: Django project configuration
+
+## 🚀 How to Run
+
+### Prerequisites
+- Python 3.x
+- Django framework
+
+### Installation & Setup (Windows)
+
+**Clone the repository**
+```bash
+git clone git@github.com:OTUSOFE365025/assignment-3-django-and-energy-group-20-crn-43510.git
+cd assignment-3-django-and-energy-group-20-crn-43510
 ```
-mkdir myproject; cd myproject
+## ⚙️ Create and Activate Virtual Environment
+
+**Command Prompt (Windows):**
+```bash
+python -m venv venv
+venv\Scripts\activate
 ```
-Create a virtual environment and install django
+
+## Install Dependencies
+
+**Command Prompt (Windows):**
+```bash
+python -m pip install --upgrade pip
+python -m pip install django
 ```
-python -m venv venv; source venv/bin/activate; pip install django
+
+## Initialize Database Schema
+
+**Command Prompt (Windows):**
+```bash
+python manage.py makemigrations db
+python manage.py migrate
 ```
-Download this project template from GitHub
-```
-git clone git@github.com:dancaron/Django-ORM.git; cd Django-ORM
-```
-Initialize the database
-```
-python manage.py makemigrations db; python manage.py migrate
-```
-Run the project
-```
+
+## Run the Application
+
+**Command Prompt (Windows):**
+```bash
 python main.py
 ```
 
-Feel free to send pull requests if you want to improve this project.
+## Application Features & Functionality
 
-:crystal_ball: Example
-----------------------
-After running Quick Start above: 
+- **Database Population:** Automatically populates with sample product data  
+- **Product Scanning:** Look up products by UPC code  
+- **Inventory Display:** View all products in the database  
+- **Interactive Interface:** User-friendly command-line interface  
 
-Code in db/models.py:
-```
-# Sample User model
-class User(models.Model):
-    name = models.CharField(max_length=50, default='Dan')
+---
 
-    def __str__(self):
-        return self.name
-```
-Code in main.py:
-```
-# Seed a few users in the database
-User.objects.create(name='Dan')
-User.objects.create(name='Robert')
+## Commands Available
 
-for u in User.objects.all():
-    print(f'ID: {u.id} \tUsername: {u.name}')
-```
-Output from command: ```python main.py```
-```
-ID: 1	Username: Dan
-ID: 2	Username: Robert
-```
+- Enter a **UPC code** to scan and display product information  
+- Type **`list`** to view all products in inventory  
+- Type **`quit`** or **`exit`** to close the application  
 
-:mortar_board: Django Models
-----------------------------
 
-Link: [How to Use Django Models](https://docs.djangoproject.com/en/3.1/topics/db/models/)
+##  Demonstration
 
-License
--------
+### 📦 Database Records Being Added
+![Database Population Screenshot](images/populating_database.png)
 
-The MIT License (MIT) Copyright (c) 2024 Dan Caron
+---
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+### 📋 List of All Records
+![Inventory List Screenshot](images/list.png)
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+---
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+### ✅ Valid UPC Scan
+![Valid UPC Screenshot](images/product_found.png)
+
+---
+
+### ❌ Invalid UPC Scan
+![Invalid UPC Screenshot](images/product_notfound.png)
+
+## Question 2
+
+### The answers to Question 2 are posted on Canvas.
