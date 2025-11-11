@@ -25,19 +25,21 @@ from db.models import *
 def populate_products():
     print("\n=== Populating Product Database ===")
     
-    # Products from Assignment 2
+    # Products to add
     products_data = [
-        {"upc": "12345", "name": "Coffee", "price": 8.32},
-        {"upc": "67890", "name": "Muffin", "price": 2.50},
-        {"upc": "11111", "name": "Sandwich", "price": 5.99},
-        {"upc": "22222", "name": "Cookie", "price": 1.25},
-        {"upc": "33333", "name": "Tea", "price": 3.75},
-        {"upc": "44444", "name": "Juice", "price": 4.50},
-        {"upc": "55555", "name": "Bagel", "price": 3.25},
-        {"upc": "66666", "name": "Donut", "price": 1.75},
-        {"upc": "77777", "name": "Salad", "price": 7.99},
-        {"upc": "88888", "name": "Water", "price": 1.50},
+        {"upc": "000000012345", "name": "Coffee", "price": 8.32},
+        {"upc": "000000067890", "name": "Muffin", "price": 2.50},
+        {"upc": "000000011111", "name": "Sandwich", "price": 5.99},
+        {"upc": "000000022222", "name": "Cookie", "price": 1.25},
+        {"upc": "000000033333", "name": "Tea", "price": 3.75},
+        {"upc": "000000044444", "name": "Juice", "price": 4.50},
+        {"upc": "000000055555", "name": "Bagel", "price": 3.25},
+        {"upc": "000000066666", "name": "Donut", "price": 1.75},
+        {"upc": "000000077777", "name": "Salad", "price": 7.99},
+        {"upc": "000000088888", "name": "Water", "price": 1.50},
     ]
+
+    Product.objects.all().delete()  # Clear existing products
     
     # Add products to database
     for product_data in products_data:
@@ -61,10 +63,10 @@ def display_all_products():
     print("\n=== Current Product Inventory ===")
     products = Product.objects.all()
     if products:
-        print(f"{'UPC':<10} {'Product':<15} {'Price':<10}")
+        print(f"{'UPC':<12} {'Product':<15} {'Price':<10}")
         print("-" * 35)
         for product in products:
-            print(f"{product.upc:<10} {product.name:<15} ${product.price:<9.2f}")
+            print(f"{product.upc:<12} {product.name:<15} ${product.price:<9.2f}")
     else:
         print("No products in database.")
 
